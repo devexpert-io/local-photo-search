@@ -15,3 +15,9 @@ uv sync
 uv run scripts/download_sample_photos.py
 uv run photosearch try "un perro" sample-photos/unsplash-237.jpg sample-photos/unsplash-10.jpg
 ```
+
+## Paso 2 · Guardar los vectores en SQLite
+
+```bash
+uv run python -m photosearch.db   # prueba sqlite-vec con vectores de juguete
+```
