@@ -21,3 +21,11 @@ uv run photosearch try "un perro" sample-photos/unsplash-237.jpg sample-photos/u
 ```bash
 uv run python -m photosearch.db   # prueba sqlite-vec con vectores de juguete
 ```
+
+## Paso 3 · Indexar una carpeta
+
+```bash
+uv run photosearch index sample-photos      # o la carpeta con tus fotos
+```
+
+Solo procesa las fotos nuevas, así que puedes volver a lanzarlo cuando añadas más.
