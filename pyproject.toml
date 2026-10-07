@@ -1,0 +1,23 @@
+[project]
+name = "local-photo-search"
+version = "0.1.0"
+description = "Busca en tus fotos con lenguaje natural, 100% en local, con EmbeddingGemma 2"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pillow>=11",
+    "sentence-transformers>=6.1",
+    "torch>=2.9",
+    "torchvision>=0.24",
+    "transformers>=5.19",
+]
+
+[project.scripts]
+photosearch = "photosearch.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.12,<0.13"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "photosearch"
