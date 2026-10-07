@@ -1,0 +1,111 @@
+:root {
+  --bg: #000;
+  --panel: #1e1e1e;
+  --ink: #fff;
+  --base200: #c3c3c3;
+  --base600: #737373;
+  --sky: #98defb;
+  --violet: #a790fa;
+  --green: #61d180;
+  --hair: rgba(255, 255, 255, 0.09);
+  --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg) radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px) 0 0 / 32px 32px;
+  color: var(--ink);
+  font-family: var(--sans);
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+header { max-width: 1400px; margin: 0 auto; padding: 48px 32px 20px; }
+
+.kicker {
+  display: flex; align-items: center; gap: 10px; margin: 0;
+  font: 13px var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--base200);
+}
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); }
+
+h1 { margin: 10px 0 28px; font-size: clamp(36px, 5vw, 56px); font-weight: 600; letter-spacing: -0.03em; }
+
+#search {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px 10px 22px; border-radius: 20px;
+  background: var(--panel); box-shadow: 0 0 0 1px var(--hair);
+  transition: box-shadow 0.2s;
+}
+#search:focus-within { box-shadow: 0 0 0 1px var(--sky), 0 0 40px rgba(152, 222, 251, 0.14); }
+
+#query {
+  flex: 1; min-width: 0; padding: 12px 0;
+  background: none; border: 0; outline: 0;
+  color: var(--ink); font: 22px var(--sans);
+}
+#query::placeholder { color: var(--base600); }
+
+#chip {
+  display: flex; align-items: center; gap: 10px; padding: 6px 6px 6px 6px;
+  border-radius: 14px; background: rgba(167, 144, 250, 0.16); color: var(--violet);
+  font-size: 15px; white-space: nowrap;
+}
+#chip[hidden] { display: none; }
+#chip img { width: 40px; height: 40px; object-fit: cover; border-radius: 10px; }
+#chip button { padding: 0 6px; background: none; border: 0; color: inherit; font-size: 22px; cursor: pointer; }
+
+.meta {
+  display: flex; justify-content: space-between; align-items: center; margin-top: 14px;
+  font: 13px var(--mono); letter-spacing: 0.04em; color: var(--base600);
+}
+.toggle { display: flex; gap: 8px; align-items: center; cursor: pointer; }
+
+main {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px;
+  max-width: 1400px; margin: 0 auto; padding: 8px 32px 64px;
+}
+
+.card {
+  position: relative; aspect-ratio: 4 / 3; padding: 0; border: 0; border-radius: 16px;
+  overflow: hidden; background: var(--panel); cursor: pointer;
+}
+.card img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease); }
+.card:hover img { transform: scale(1.04); }
+.card:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; }
+
+.score {
+  position: absolute; left: 10px; top: 10px; padding: 4px 8px; border-radius: 8px;
+  background: rgba(0, 0, 0, 0.72); color: var(--sky); font: 13px var(--mono);
+  opacity: 0; transition: opacity 0.2s;
+}
+.show-scores .score { opacity: 1; }
+
+dialog { max-width: min(92vw, 1400px); max-height: 92vh; padding: 0; border: 0; background: transparent; }
+dialog::backdrop { background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(6px); }
+#viewer-img { display: block; max-width: 100%; max-height: calc(92vh - 76px); margin: 0 auto; border-radius: 20px; }
+.viewer-bar {
+  display: flex; align-items: center; justify-content: flex-end; gap: 12px; padding-top: 16px;
+  font: 14px var(--mono); color: var(--base200);
+}
+#viewer-date { margin-right: auto; }
+.pill { padding: 12px 22px; border: 0; border-radius: 999px; background: var(--violet); color: #1e1e1e; font: 600 16px var(--sans); cursor: pointer; }
+.ghost { padding: 12px; border: 0; background: none; color: var(--base200); font: 15px var(--sans); cursor: pointer; }
+
+#drop {
+  position: fixed; inset: 16px; display: grid; place-items: center;
+  border: 3px dashed var(--sky); border-radius: 24px; background: rgba(0, 0, 0, 0.82);
+  color: var(--sky); font-size: 28px; opacity: 0; pointer-events: none; transition: opacity 0.15s;
+}
+#drop.on { opacity: 1; }
+
+@media (max-width: 640px) {
+  header { padding: 28px 16px 16px; }
+  main { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; padding: 8px 16px 40px; }
+  #query { font-size: 18px; }
+}

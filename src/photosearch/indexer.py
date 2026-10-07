@@ -2,6 +2,7 @@
 
 import time
 from pathlib import Path
+from typing import BinaryIO
 
 from PIL import Image, ImageOps
 from pillow_heif import register_heif_opener
@@ -22,8 +23,8 @@ def find_photos(folder: Path) -> list[Path]:
     return sorted(path for path in folder.rglob("*") if path.suffix.lower() in EXTENSIONS)
 
 
-def load_photo(path: Path) -> tuple[Image.Image, str | None]:
-    image = Image.open(path)
+def load_photo(source: Path | BinaryIO) -> tuple[Image.Image, str | None]:
+    image = Image.open(source)
     image.draft("RGB", (1024, 1024))  # en JPEG decodifica ya reducida: mucho más rápido
     taken_at = image.getexif().get_ifd(EXIF_IFD).get(DATE_TAKEN)  # "2026:07:15 18:32:10"
     if taken_at:

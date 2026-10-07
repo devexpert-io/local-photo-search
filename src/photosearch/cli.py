@@ -1,4 +1,4 @@
-"""Línea de comandos: `photosearch try | index`."""
+"""Línea de comandos: `photosearch try | index | serve`."""
 
 import argparse
 import time
@@ -34,6 +34,15 @@ def cmd_index(args: argparse.Namespace) -> None:
     index_folder(Path(args.folder), Path(args.data))
 
 
+def cmd_serve(args: argparse.Namespace) -> None:
+    import os
+
+    import uvicorn
+
+    os.environ["PHOTOSEARCH_DATA"] = args.data
+    uvicorn.run("photosearch.app:app", host="127.0.0.1", port=args.port)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(prog="photosearch")
     parser.add_argument("--data", default="data", help="carpeta del índice y las miniaturas")
@@ -47,6 +56,10 @@ def main() -> None:
     index_cmd = commands.add_parser("index", help="indexa una carpeta de fotos")
     index_cmd.add_argument("folder")
     index_cmd.set_defaults(func=cmd_index)
+
+    serve_cmd = commands.add_parser("serve", help="arranca la web en http://127.0.0.1:8000")
+    serve_cmd.add_argument("--port", type=int, default=8000)
+    serve_cmd.set_defaults(func=cmd_serve)
 
     args = parser.parse_args()
     args.func(args)
