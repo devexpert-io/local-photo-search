@@ -9,7 +9,7 @@ Buscar:   «un perro»       ─▶ EmbeddingGemma 2 ─▶ vector ─▶ vecino
 
 Texto e imágenes caen en el mismo espacio vectorial, así que una frase y una foto que hablan de lo mismo quedan cerca.
 
-El paso a paso está explicado en [este vídeo](https://www.youtube.com/watch?v=wjzfEm88j44).
+El paso a paso está explicado en [este vídeo](https://www.youtube.com/watch?v=ZLP-49T5gW4).
 
 ## Requisitos
 
