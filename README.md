@@ -9,6 +9,8 @@ Buscar:   «un perro»       ─▶ EmbeddingGemma 2 ─▶ vector ─▶ vecino
 
 Texto e imágenes caen en el mismo espacio vectorial, así que una frase y una foto que hablan de lo mismo quedan cerca.
 
+El paso a paso está explicado en [este vídeo](https://www.youtube.com/watch?v=wjzfEm88j44).
+
 ## Requisitos
 
 - [uv](https://docs.astral.sh/uv/)
@@ -73,3 +75,7 @@ Con la configuración por defecto del modelo (float32 y 280 tokens) indexaba a 3
 ## Créditos
 
 Las fotos de ejemplo son de [Unsplash](https://unsplash.com/license) y se descargan desde [Lorem Picsum](https://picsum.photos).
+
+## Licencia
+
+El código tiene licencia [MIT](LICENSE). Las fotos de ejemplo no forman parte del repositorio y mantienen la licencia de Unsplash.
